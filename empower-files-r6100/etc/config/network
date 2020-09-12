@@ -8,31 +8,54 @@ config globals 'globals'
     option ula_prefix 'fddc:283a:92b6::/48'
 
 config interface 'wanphy'
-    option ifname 'eth0.2'
-
-config interface 'lan'
-    option ifname 'eth0.1'
-    option force_link '1'
-    option type 'bridge'
-    option proto 'static'
-    option netmask '255.255.255.0'
-    option ipaddr '192.168.250.1'
-
+    option ifname 'eth0'
+    
 config interface 'wan'
     option ifname 'br-ovs'
     option proto 'dhcp'
 
+config interface 'lan1'
+	option ifname 'eth1.1'
+	option force_link '1'
+    option type 'bridge'
+	option proto 'static'
+	option netmask '255.255.255.0'
+	option ipaddr '192.168.250.1'
+
+config interface 'lan2'                    
+        option ifname 'eth1.2'            
+        option proto 'static'
+
+config interface 'lan3'
+        option ifname 'eth1.3'
+        option proto 'static'
+ 
+config interface 'lan4'
+        option ifname 'eth1.4'
+        option proto 'static'
+
 config switch
-    option name 'switch0'
-    option reset '1'
-    option enable_vlan '1'
+        option name 'switch0'
+        option reset '1'
+        option enable_vlan '1'
+        option enable_learning '0'
 
 config switch_vlan
-    option device 'switch0'
-    option vlan '1'
-    option ports '0t 1 2 3 4'
+        option vlan '1'
+        option ports '2 0t'
+        option device 'switch0'
 
 config switch_vlan
-    option device 'switch0'
-    option vlan '2'
-    option ports '0t 5'
+        option vlan '2'
+        option ports '3 0t'
+        option device 'switch0'
+
+config switch_vlan
+        option vlan '3'
+        option ports '4 0t'
+        option device 'switch0'
+
+config switch_vlan
+        option vlan '4'
+        option ports '1 0t'
+        option device 'switch0'
